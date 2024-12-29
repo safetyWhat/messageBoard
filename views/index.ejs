@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Message Board</title>
+    </head>
+    <body>
+        <%- include('navbar', {links: links}) %>
+        <h1>My First Message Board</h1>
+        <% for (let i = 0; i < messages.length; i++) { %>
+            <div class="message">
+                <p><%= messages[i].user %></p>
+                <p><%= messages[i].added %></p>
+                <p><%= messages[i].text %></p>
+                <a href="/open/<%= i %>">
+                    <button>Open</button>
+                </a>    
+            </div>
+        <% } %>
+    </body>
+</html>
