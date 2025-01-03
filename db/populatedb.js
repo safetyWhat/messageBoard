@@ -1,15 +1,16 @@
 require("dotenv").config();
 const { Client } = require("pg");
 
-const SQL =` 
+const SQL =`
+    DROP TABLE IF EXISTS messages;
     CREATE TABLE messages (
         id SERIAL PRIMARY KEY,
         text TEXT,
-        user TEXT,
+        "user" TEXT,
         added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
-    INSERT INTO messages (text, user) 
+    INSERT INTO messages (text, "user") 
     VALUES 
     ('Hi there!', 'Amanda'),
     ('Hello World!', 'Charles'),
@@ -25,10 +26,15 @@ async function main() {
         connectionString: process.env.DATABASE_URL,
     });
 
-    await client.connect();
-    await client.query(SQL);
-    await client.end();
-    console.log('database seeded');
+    try {
+        await client.connect();
+        await client.query(SQL);
+        console.log('database seeded');
+    } catch (err) {
+        console.error('Error seeding database:', err);
+    } finally {
+        await client.end();
+    }
 }
 
 main().catch(console.error);
