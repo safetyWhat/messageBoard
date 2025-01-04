@@ -11,7 +11,7 @@ async function getAllMessages() {
 };
 
 async function addMessage(message, user) {
-    const result = await pool.query('INSERT INTO messages (text, user) VALUES ($1, $2)', [message, user]);
+    const result = await pool.query('INSERT INTO messages (text, "user") VALUES ($1, $2)', [message, user]);
     return result;
 };
 

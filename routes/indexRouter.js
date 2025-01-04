@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const indexRouter = Router();
-const indexController = require('../controllers/indexController');
+const indexController = require('../controllers/indexControllers');
 
 indexRouter.get("/", indexController.getMessages);
 indexRouter.get('/new', indexController.newMessageGet);
