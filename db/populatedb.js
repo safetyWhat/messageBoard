@@ -23,7 +23,7 @@ const SQL =`
 async function main() {
     console.log('seeding database');
     const client = new Client({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: process.env.RAILWAY_URL,
     });
 
     try {
